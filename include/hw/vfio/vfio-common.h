@@ -148,6 +148,7 @@ typedef struct VFIODevice {
     IOMMUFDBackend *iommufd;
     VFIOIOASHwpt *hwpt;
     QLIST_ENTRY(VFIODevice) hwpt_next;
+    struct vfio_region_info **regions;
 } VFIODevice;
 
 struct VFIODeviceOps {
