@@ -857,6 +857,16 @@ static bool vfio_device_get(VFIOGroup *group, const char *name,
 
 static void vfio_device_put(VFIODevice *vbasedev)
 {
+    if (vbasedev->reginfo != NULL) {
+        int i;
+
+        for (i = 0; i < vbasedev->num_regions; i++) {
+            g_free(vbasedev->reginfo[i]);
+        }
+        g_free(vbasedev->reginfo);
+        vbasedev->reginfo = NULL;
+    }
+
     if (!vbasedev->group) {
         return;
     }
