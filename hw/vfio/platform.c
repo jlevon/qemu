@@ -650,7 +650,7 @@ static void vfio_platform_instance_init(Object *obj)
     VFIODevice *vbasedev = &vdev->vbasedev;
 
     vfio_device_init(vbasedev, VFIO_DEVICE_TYPE_PLATFORM, &vfio_platform_ops,
-                     DEVICE(vdev), false);
+                     &vfio_device_io_ops_ioctl, DEVICE(vdev), false);
 }
 
 #ifdef CONFIG_IOMMUFD
